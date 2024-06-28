@@ -6,10 +6,17 @@ document.addEventListener('DOMContentLoaded', () => {
             const inner = tile.querySelector('.tile-inner');
             const audio = tile.querySelector('audio');
 
-            inner.style.transform = inner.style.transform === 'rotateY(180deg)' ? '' : 'rotateY(180deg)';
-
-            if (audio) {
-                audio.play();
+            if (inner.style.transform === 'rotateY(180deg)') {
+                inner.style.transform = '';
+                if (audio) {
+                    audio.pause();
+                    audio.currentTime = 0;
+                }
+            } else {
+                inner.style.transform = 'rotateY(180deg)';
+                if (audio) {
+                    audio.play();
+                }
             }
         });
     });
