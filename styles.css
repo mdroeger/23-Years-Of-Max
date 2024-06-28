@@ -1,43 +1,94 @@
 * {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 body {
-  margin: 0;
-  font-family: sans-serif;
-  background: #f5f6f7;
+    margin: 0;
+    font-family: sans-serif;
+    background: #f5f6f7;
 }
 
 .header {
-  text-align: center;
-  text-transform: uppercase;
-  padding: 32px;
-  background-color: #0a0a23;
-  color: #fff;
-  border-bottom: 4px solid #fdb347;
+    text-align: center;
+    text-transform: uppercase;
+    padding: 32px;
+    background-color: #0a0a23;
+    color: #fff;
+    border-bottom: 4px solid #fdb347;
 }
 
 .gallery {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  gap: 16px;
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 20px 10px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px 10px;
 }
 
-.gallery img {
-  width: 100%;
-  max-width: 350px;
-  height: 300px;
-  object-fit: cover;
-  border-radius: 10px;
+.tile {
+    perspective: 1000px;
+    width: 300px;
+    height: 300px;
+}
+
+.tile-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+}
+
+.tile:hover .tile-inner {
+    transform: rotateY(180deg);
+}
+
+.tile-front, .tile-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 10px;
+}
+
+.tile-front {
+    background: #fff;
+}
+
+.tile-back {
+    background: #f5f6f7;
+    color: #333;
+    transform: rotateY(180deg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
 }
 
 .gallery::after {
-  content: "";
-  width: 350px;
+    content: "";
+    width: 300px;
+}
+
+.gallery .tile:nth-child(1), .gallery .tile:nth-child(2), .gallery .tile:nth-child(3),
+.gallery .tile:nth-child(4), .gallery .tile:nth-child(5),
+.gallery .tile:nth-child(6), .gallery .tile:nth-child(7), .gallery .tile:nth-child(8),
+.gallery .tile:nth-child(9), .gallery .tile:nth-child(10), .gallery .tile:nth-child(11),
+.gallery .tile:nth-child(12), .gallery .tile:nth-child(13), .gallery .tile:nth-child(14),
+.gallery .tile:nth-child(15), .gallery .tile:nth-child(16), .gallery .tile:nth-child(17),
+.gallery .tile:nth-child(18), .gallery .tile:nth-child(19), .gallery .tile:nth-child(20) {
+    width: calc(20% - 16px); /* 4x5 grid */
+}
+
+.gallery .tile:nth-child(21), .gallery .tile:nth-child(22) {
+    width: calc(50% - 8px); /* 2 tiles centered */
+}
+
+.gallery .tile:nth-child(23) {
+    width: 100%; /* single tile centered */
 }
