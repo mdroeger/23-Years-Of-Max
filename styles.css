@@ -42,6 +42,8 @@ body {
   transform: rotateY(0deg);
   transition: transform 0.6s;
   background-color: #0885bf;
+  border-radius: 10px; /* Rounded corners for the tile */
+  overflow: hidden; /* Ensure images do not overflow */
 }
 
 .tile:hover .tile-inner, .tile.flipped .tile-inner {
@@ -62,8 +64,10 @@ body {
 }
 
 .tile-front img {
-  max-width: 90%;
-  max-height: 90%;
+  max-width: 100%; /* Ensure image fits within the tile */
+  max-height: 100%;
+  object-fit: cover; /* Maintain aspect ratio and cover entire tile */
+  border-radius: 10px; /* Rounded corners for the image */
 }
 
 .tile-back {
