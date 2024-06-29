@@ -39,11 +39,10 @@ body {
   width: 100%;
   height: 100%;
   transform-style: preserve-3d;
-  transform: rotateY(0deg);
   transition: transform 0.6s;
   background-color: #0885bf;
   border-radius: 10px; /* Rounded corners for the tile */
-  overflow: hidden; /* Ensure images do not overflow */
+  overflow: hidden; /* Ensure contents stay within bounds */
   color: #fff; /* White text color when flipped */
 }
 
@@ -69,12 +68,6 @@ body {
   max-height: 100%;
   object-fit: cover; /* Maintain aspect ratio and cover entire tile area */
   border-radius: 10px; /* Rounded corners for the image */
-  opacity: 1; /* Initially visible */
-  transition: opacity 0.6s; /* Smooth opacity transition */
-}
-
-.tile.flipped .tile-front img {
-  opacity: 0; /* Hide image when tile is flipped */
 }
 
 .tile-back {
