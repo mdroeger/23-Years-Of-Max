@@ -1,73 +1,92 @@
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 body {
-    margin: 0;
-    font-family: sans-serif;
-    background: #f5f6f7;
+  margin: 0;
+  font-family: sans-serif;
+  background: #f5f6f7;
 }
 
 .header {
-    text-align: center;
-    text-transform: uppercase;
-    padding: 32px;
-    background-color: #0a0a23;
-    color: #fff;
-    border-bottom: 4px solid #fdb347;
+  text-align: center;
+  text-transform: uppercase;
+  padding: 32px;
+  background-color: #0a0a23;
+  color: #fff;
+  border-bottom: 4px solid #fdb347;
 }
 
 .gallery {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 16px;
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 20px 10px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  gap: 20px;
 }
 
 .tile {
-    perspective: 1000px;
-    width: calc(20% - 16px);
-    height: 0;
-    padding-bottom: calc(20% - 16px); /* To make it square */
+  position: relative;
+  width: calc(25% - 20px); /* 4 tiles per row */
+  padding-bottom: calc(25% - 20px); /* Maintain square shape */
+  perspective: 1000px;
 }
 
 .tile-inner {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    transition: transform 0.6s;
-    transform-style: preserve-3d;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transform: rotateY(0deg);
+  transition: transform 0.6s;
+  background-color: #0885bf;
+}
+
+.tile:hover .tile-inner, .tile.flipped .tile-inner {
+  transform: rotateY(180deg);
 }
 
 .tile-front, .tile-back {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    backface-visibility: hidden;
-    border-radius: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #0885bf; /* Tile background color */
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+}
+
+.tile-front {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .tile-front img {
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: cover;
-    border-radius: 10px;
+  max-width: 90%;
+  max-height: 90%;
 }
 
 .tile-back {
-    color: #fff;
-    transform: rotateY(180deg);
-    padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: rotateY(180deg);
+  padding: 10px;
+  box-sizing: border-box;
+  color: #fff;
+  text-align: center;
 }
 
-.gallery::after {
-    content: "";
-    width: 300px;
+@media (max-width: 768px) {
+  .tile {
+    width: calc(50% - 20px); /* 2 tiles per row on smaller screens */
+    padding-bottom: calc(50% - 20px);
+  }
+}
+
+@media (max-width: 480px) {
+  .tile {
+    width: calc(100% - 20px); /* 1 tile per row on extra small screens */
+    padding-bottom: calc(100% - 20px);
+  }
 }
