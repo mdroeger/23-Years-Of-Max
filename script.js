@@ -1,37 +1,29 @@
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', function () {
     const tiles = document.querySelectorAll('.tile');
-    let activeTile = null;
+    let currentAudio = null;
+    let currentTile = null;
 
     tiles.forEach(tile => {
-        tile.addEventListener('click', () => {
-            const inner = tile.querySelector('.tile-inner');
-            const audio = tile.querySelector('audio');
+        tile.addEventListener('click', function () {
+            const audio = this.querySelector('audio');
 
-            // If there's an active tile, reset it
-            if (activeTile && activeTile !== tile) {
-                const activeInner = activeTile.querySelector('.tile-inner');
-                const activeAudio = activeTile.querySelector('audio');
-                activeInner.style.transform = '';
-                if (activeAudio) {
-                    activeAudio.pause();
-                    activeAudio.currentTime = 0;
-                }
+            if (currentTile && currentTile !== this) {
+                currentTile.classList.remove('flipped');
+                currentAudio.pause();
+                currentAudio.currentTime = 0;
             }
 
-            // Toggle the current tile
-            if (inner.style.transform === 'rotateY(180deg)') {
-                inner.style.transform = '';
-                if (audio) {
-                    audio.pause();
-                    audio.currentTime = 0;
-                }
-                activeTile = null;
+            if (currentTile === this) {
+                currentTile.classList.remove('flipped');
+                currentAudio.pause();
+                currentAudio.currentTime = 0;
+                currentTile = null;
+                currentAudio = null;
             } else {
-                inner.style.transform = 'rotateY(180deg)';
-                if (audio) {
-                    audio.play();
-                }
-                activeTile = tile;
+                this.classList.add('flipped');
+                audio.play();
+                currentTile = this;
+                currentAudio = audio;
             }
         });
     });
