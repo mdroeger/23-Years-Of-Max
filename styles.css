@@ -44,6 +44,7 @@ body {
   background-color: #0885bf;
   border-radius: 10px; /* Rounded corners for the tile */
   overflow: hidden; /* Ensure images do not overflow */
+  color: #fff; /* White text color when flipped */
 }
 
 .tile:hover .tile-inner, .tile.flipped .tile-inner {
@@ -66,8 +67,14 @@ body {
 .tile-front img {
   max-width: 100%; /* Ensure image fits within the tile */
   max-height: 100%;
-  object-fit: cover; /* Maintain aspect ratio and cover entire tile */
+  object-fit: cover; /* Maintain aspect ratio and cover entire tile area */
   border-radius: 10px; /* Rounded corners for the image */
+  opacity: 1; /* Initially visible */
+  transition: opacity 0.6s; /* Smooth opacity transition */
+}
+
+.tile.flipped .tile-front img {
+  opacity: 0; /* Hide image when tile is flipped */
 }
 
 .tile-back {
@@ -77,8 +84,15 @@ body {
   transform: rotateY(180deg);
   padding: 10px;
   box-sizing: border-box;
-  color: #fff;
   text-align: center;
+}
+
+@media (max-width: 1024px) {
+  .gallery.heart {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 20px;
+  }
 }
 
 @media (max-width: 768px) {
@@ -89,6 +103,12 @@ body {
 }
 
 @media (max-width: 480px) {
+  .gallery.heart {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+  }
   .tile {
     width: calc(100% - 20px); /* 1 tile per row on extra small screens */
     padding-bottom: calc(100% - 20px);
