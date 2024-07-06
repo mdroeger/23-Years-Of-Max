@@ -3,6 +3,13 @@ document.addEventListener('DOMContentLoaded', () => {
   let currentAudio = null;
   let currentTile = null;
 
+  // Store initial positions of tiles
+  tiles.forEach(tile => {
+    const rect = tile.getBoundingClientRect();
+    tile.dataset.initialLeft = rect.left;
+    tile.dataset.initialTop = rect.top;
+  });
+
   tiles.forEach((tile) => {
     const audio = tile.querySelector('audio');
     const backContent = tile.querySelector('.tile-back-content');
@@ -11,6 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (currentTile && currentTile !== tile) {
         // Reset previous tile
         currentTile.classList.remove('flipped', 'active');
+        setTilePosition(currentTile, currentTile.dataset.initialLeft, currentTile.dataset.initialTop);
         if (currentAudio) {
           currentAudio.pause();
           currentAudio.currentTime = 0;
@@ -25,13 +33,14 @@ document.addEventListener('DOMContentLoaded', () => {
         // Play audio
         audio.play();
         resizeTextToFit(backContent);
-        ensureInViewport(tile);
+        centerTile(tile);
         currentTile = tile;
         currentAudio = audio;
       } else {
         // Stop audio
         audio.pause();
         audio.currentTime = 0;
+        setTilePosition(tile, tile.dataset.initialLeft, tile.dataset.initialTop);
         currentTile = null;
         currentAudio = null;
       }
@@ -47,15 +56,23 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  function ensureInViewport(tile) {
+  function centerTile(tile) {
     const rect = tile.getBoundingClientRect();
-    const offset = 10; // Small offset to ensure it stays within bounds
-    const left = Math.max(offset, rect.left);
-    const top = Math.max(offset, rect.top);
-    const right = Math.min(window.innerWidth - rect.width - offset, rect.left);
-    const bottom = Math.min(window.innerHeight - rect.height - offset, rect.top);
+    const viewportWidth = window.innerWidth;
+    const viewportHeight = window.innerHeight;
+    const tileSize = Math.min(viewportWidth, viewportHeight) * 0.6; // 60% of the smaller dimension
 
-    tile.style.left = `${left}px`;
-    tile.style.top = `${top}px`;
+    tile.style.width = `${tileSize}px`;
+    tile.style.height = `${tileSize}px`;
+    tile.style.top = `${(viewportHeight - tileSize) / 2}px`;
+    tile.style.left = `${(viewportWidth - tileSize) / 2}px`;
+  }
+
+  function setTilePosition(tile, left, top) {
+    tile.style.width = '';
+    tile.style.height = '';
+    tile.style.top = '';
+    tile.style.left = '';
+    tile.style.transform = '';
   }
 });
