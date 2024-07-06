@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   tiles.forEach(tile => {
     const audio = tile.querySelector('audio');
+    const backContent = tile.querySelector('.tile-back-content');
 
     tile.addEventListener('click', () => {
       if (currentTile && currentTile !== tile) {
@@ -14,6 +15,9 @@ document.addEventListener('DOMContentLoaded', () => {
           currentAudio.pause();
           currentAudio.currentTime = 0;
         }
+        // Restore previous tile position
+        currentTile.style.transform = currentTile.originalTransform;
+        currentTile.style.position = 'static';
       }
 
       // Flip the clicked tile
@@ -21,17 +25,33 @@ document.addEventListener('DOMContentLoaded', () => {
       tile.classList.toggle('active');
 
       if (tile.classList.contains('active')) {
+        // Save original transform
+        tile.originalTransform = tile.style.transform;
+
         // Play audio
         audio.play();
-        // Move tile to the center
+        
+        // Calculate center position
         const rect = tile.getBoundingClientRect();
         const docEl = document.documentElement;
-        const top = (window.pageYOffset || docEl.scrollTop || document.body.scrollTop) - (docEl.clientTop || 0);
-        const left = (window.pageXOffset || docEl.scrollLeft || document.body.scrollLeft) - (docEl.clientLeft || 0);
+        const scrollTop = window.pageYOffset || docEl.scrollTop || document.body.scrollTop;
+        const scrollLeft = window.pageXOffset || docEl.scrollLeft || document.body.scrollLeft;
+        const top = scrollTop + window.innerHeight / 2 - rect.height / 2;
+        const left = scrollLeft + window.innerWidth / 2 - rect.width / 2;
 
-        tile.style.position = 'absolute';
-        tile.style.left = `${left + window.innerWidth / 2 - rect.width / 2}px`;
-        tile.style.top = `${top + window.innerHeight / 2 - rect.height / 2}px`;
+        // Move tile to the center
+        tile.style.position = 'fixed';
+        tile.style.top = `${rect.top}px`;
+        tile.style.left = `${rect.left}px`;
+
+        requestAnimationFrame(() => {
+          tile.style.transition = 'transform 0.6s, top 0.6s, left 0.6s';
+          tile.style.top = `${top}px`;
+          tile.style.left = `${left}px`;
+          tile.style.transform = `scale(1.5)`;
+        });
+
+        resizeTextToFit(backContent);
 
         currentTile = tile;
         currentAudio = audio;
@@ -39,10 +59,22 @@ document.addEventListener('DOMContentLoaded', () => {
         // Stop audio
         audio.pause();
         audio.currentTime = 0;
+
+        // Restore tile position
         tile.style.position = 'static';
+        tile.style.transform = tile.originalTransform;
         currentTile = null;
         currentAudio = null;
       }
     });
   });
+
+  function resizeTextToFit(element) {
+    let fontSize = parseInt(window.getComputedStyle(element).fontSize);
+    const parent = element.parentElement;
+    while (element.scrollHeight > parent.clientHeight || element.scrollWidth > parent.clientWidth) {
+      fontSize -= 1;
+      element.style.fontSize = `${fontSize}px`;
+    }
+  }
 });
