@@ -4,17 +4,18 @@
 
 body {
   margin: 0;
-  font-family: 'Dancing Script', cursive;
+  font-family: 'Childish', sans serif;
   background: #f5f6f7;
 }
 
 .header {
   text-align: center;
-  text-transform: uppercase;
   padding: 32px;
-  background-color: #fff;
+  background-color: #0885bf;
   color: #fff;
-  border-bottom: 4px solid #fdb347;
+  border-bottom: 4px solid #3c6e5a;
+  font-family: 'Georgia', serif; /* Example of a romantic and readable font */
+}
 }
 
 .gallery {
@@ -30,7 +31,7 @@ body {
   width: 100%;
   padding-top: 100%; /* Keep tiles square */
   perspective: 1000px;
-  transition: transform 0.6s ease-in-out;
+  transition: transform 1s ease-in-out;
 }
 
 .tile-inner {
@@ -40,7 +41,7 @@ body {
   width: 100%;
   height: 100%;
   transform-style: preserve-3d;
-  transition: transform 0.6s;
+  transition: transform 1s;
 }
 
 .tile-front, .tile-back {
