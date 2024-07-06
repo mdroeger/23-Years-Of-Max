@@ -18,6 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Restore previous tile position
         currentTile.style.transform = currentTile.originalTransform;
         currentTile.style.position = 'static';
+        currentTile.placeholder.classList.remove('placeholder');
       }
 
       // Flip the clicked tile
@@ -27,6 +28,13 @@ document.addEventListener('DOMContentLoaded', () => {
       if (tile.classList.contains('active')) {
         // Save original transform
         tile.originalTransform = tile.style.transform;
+
+        // Create a placeholder
+        tile.placeholder = document.createElement('div');
+        tile.placeholder.className = 'tile placeholder';
+        tile.placeholder.style.width = `${tile.offsetWidth}px`;
+        tile.placeholder.style.height = `${tile.offsetHeight}px`;
+        tile.parentNode.insertBefore(tile.placeholder, tile);
 
         // Play audio
         audio.play();
@@ -65,6 +73,11 @@ document.addEventListener('DOMContentLoaded', () => {
         tile.style.transform = tile.originalTransform;
         currentTile = null;
         currentAudio = null;
+
+        // Remove placeholder
+        if (tile.placeholder) {
+          tile.placeholder.remove();
+        }
       }
     });
   });
