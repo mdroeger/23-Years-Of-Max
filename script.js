@@ -25,6 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Play audio
         audio.play();
         resizeTextToFit(backContent);
+        ensureInViewport(tile);
         currentTile = tile;
         currentAudio = audio;
       } else {
@@ -44,5 +45,17 @@ document.addEventListener('DOMContentLoaded', () => {
       fontSize -= 1;
       element.style.fontSize = `${fontSize}px`;
     }
+  }
+
+  function ensureInViewport(tile) {
+    const rect = tile.getBoundingClientRect();
+    const offset = 10; // Small offset to ensure it stays within bounds
+    const left = Math.max(offset, rect.left);
+    const top = Math.max(offset, rect.top);
+    const right = Math.min(window.innerWidth - rect.width - offset, rect.left);
+    const bottom = Math.min(window.innerHeight - rect.height - offset, rect.top);
+
+    tile.style.left = `${left}px`;
+    tile.style.top = `${top}px`;
   }
 });
