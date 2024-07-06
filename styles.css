@@ -13,7 +13,7 @@ body {
   text-transform: uppercase;
   padding: 32px;
   background-color: #fff;
-  color: #fff;
+  color: #fdb347;
   border-bottom: 4px solid #fdb347;
 }
 
@@ -90,18 +90,12 @@ body {
   left: 50%;
   transform: translate(-50%, -50%) scale(1.2); /* Adjust scale factor */
   z-index: 10;
-  width: 60vmin; /* Ensure it stays square and within viewport */
-  height: 60vmin;
+  width: 60%; /* Adjust to your preference */
+  max-width: 600px; /* Ensure it doesn't get too wide */
+  max-height: 60vw; /* Adjust for square shape and size */
 }
 
 .tile.active .tile-inner {
   width: 100%;
   height: 100%;
-}
-
-.bottom-row {
-  grid-column: span 4;
-  display: flex;
-  justify-content: center;
-  gap: 20px;
 }
