@@ -12,7 +12,7 @@ body {
   text-align: center;
   text-transform: uppercase;
   padding: 32px;
-  background-color: #0a0a23;
+  background-color: #fff;
   color: #fff;
   border-bottom: 4px solid #fdb347;
 }
@@ -99,4 +99,11 @@ body {
 .tile.active .tile-inner {
   width: 100%;
   height: 100%;
+}
+
+.bottom-row {
+  grid-column: span 4;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
 }
