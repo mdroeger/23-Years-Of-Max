@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let currentAudio = null;
   let currentTile = null;
 
-  tiles.forEach(tile => {
+  tiles.forEach((tile) => {
     const audio = tile.querySelector('audio');
     const backContent = tile.querySelector('.tile-back-content');
 
@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       }
 
-      // Flip the clicked tile
+      // Toggle current tile
       tile.classList.toggle('flipped');
       tile.classList.toggle('active');
 
