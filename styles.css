@@ -4,7 +4,7 @@
 
 body {
   margin: 0;
-  font-family: 'Georgia', serif;
+  font-family: 'Dancing Script', cursive;
   background: #f5f6f7;
 }
 
@@ -88,6 +88,13 @@ body {
   position: fixed;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%) scale(1.5);
+  transform: translate(-50%, -50%) scale(1.2); /* Adjust scale factor */
   z-index: 10;
+  max-width: 80vw; /* Ensure it doesn't go off-screen */
+  max-height: 80vh; /* Ensure it doesn't go off-screen */
+}
+
+.tile.active .tile-inner {
+  width: 100%;
+  height: 100%;
 }
