@@ -12,10 +12,10 @@ body {
   text-align: center;
   text-transform: uppercase;
   padding: 32px;
-  background-color: #0885bf;
+  background-color: #0a0a23;
   color: #fff;
-  border-bottom: 4px solid #3c6e5a;
-  font-family: 'Georgia', serif; /* Example of a romantic and readable font */
+  border-bottom: 4px solid #fdb347;
+  font-family: 'Georgia', serif; /* Romantic and readable font */
 }
 
 .gallery {
@@ -96,4 +96,8 @@ body {
   z-index: 10;
   transform: scale(1.5);
   transition: transform 0.6s, left 0.6s, top 0.6s, width 0.6s, height 0.6s;
+}
+
+.placeholder {
+  visibility: hidden;
 }
