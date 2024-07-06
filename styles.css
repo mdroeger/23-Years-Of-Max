@@ -90,9 +90,8 @@ body {
   left: 50%;
   transform: translate(-50%, -50%) scale(1.2); /* Adjust scale factor */
   z-index: 10;
-  width: 60%; /* Adjust to your preference */
-  max-width: 600px; /* Ensure it doesn't get too wide */
-  max-height: 60vw; /* Adjust for square shape and size */
+  width: 60vmin; /* Ensure it stays square and within viewport */
+  height: 60vmin;
 }
 
 .tile.active .tile-inner {
