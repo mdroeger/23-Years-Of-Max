@@ -1,35 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>23 Years of Max</title>
-  <link rel="stylesheet" href="./styles.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css">
-  <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>23 Years of Max</title>
+    <link rel="stylesheet" href="./styles.css">
 </head>
 <body>
-  <header class="header">
-    <h1>Happy 23rd, My Love!</h1>
-  </header>
-  <div class="gallery">
-    <!-- Repeat for all tiles -->
-    <div class="tile">
-      <div class="tile-inner">
-        <div class="tile-front">
-          <a href="photos/Max_1.JPG" class="glightbox" data-gallery="gallery1">
-            <img src="photos/Max_1.JPG" alt="Max 1">
-          </a>
+    <header class="header">
+        <h1>Happy 23rd, My Love!</h1>
+    </header>
+    <div class="gallery">
+        <!-- Repeat this structure for all 23 tiles -->
+        <div class="tile">
+            <div class="tile-inner">
+                <div class="tile-front">
+                    <img src="photos/Max_1.JPG" alt="Max 1">
+                </div>
+                <div class="tile-back">
+                    <div class="tile-back-content">
+                        <p>Max, you are my sunshine on a cloudy day!</p>
+                        <audio src="songs/sound1.mp3"></audio>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="tile-back">
-          <div class="tile-back-content">
-            <p>Max, you are my sunshine on a cloudy day!</p>
-            <audio src="songs/sound1.mp3"></audio>
-          </div>
-        </div>
-      </div>
+        <!-- ... (Other tiles) ... -->
     </div>
-  </div>
-  <script src="./script.js"></script>
+    <script src="./script.js"></script>
 </body>
 </html>
