@@ -4,7 +4,7 @@
 
 body {
   margin: 0;
-  font-family: 'Dancing Script', cursive;
+  font-family: sans-serif;
   background: #f5f6f7;
 }
 
@@ -12,31 +12,30 @@ body {
   text-align: center;
   text-transform: uppercase;
   padding: 32px;
-  background-color: #fff;
-  color: #fdb347;
+  background-color: #0a0a23;
+  color: #fff;
   border-bottom: 4px solid #fdb347;
 }
 
 .gallery {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   max-width: 1200px;
-  margin: 20px auto;
+  margin: 0 auto;
+  padding: 20px;
+  gap: 20px;
 }
 
 .tile {
   position: relative;
-  width: 100%;
-  padding-top: 100%; /* Keep tiles square */
+  width: calc(25% - 20px); /* 4 tiles per row */
+  padding-bottom: calc(25% - 20px); /* Maintain square shape */
   perspective: 1000px;
-  transition: transform 0.6s ease-in-out;
 }
 
 .tile-inner {
   position: absolute;
-  top: 0;
-  left: 0;
   width: 100%;
   height: 100%;
   transform-style: preserve-3d;
@@ -51,8 +50,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 10px;
-  overflow: hidden;
+  border-radius: 10px; /* Rounded corners for the tile */
 }
 
 .tile-front {
@@ -60,42 +58,23 @@ body {
 }
 
 .tile-front img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  max-width: 100%; /* Ensure image fits within the tile */
+  max-height: 100%;
+  object-fit: cover; /* Maintain aspect ratio and cover entire tile area */
+  border-radius: 10px; /* Rounded corners for the image */
 }
 
 .tile-back {
   background-color: #0885bf;
   color: #fff;
   transform: rotateY(180deg);
-  text-align: center;
-  padding: 10px;
 }
 
 .tile-back-content {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  padding: 20px;
   text-align: center;
 }
 
 .tile.flipped .tile-inner {
   transform: rotateY(180deg);
-}
-
-.tile.active {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) scale(1.2); /* Adjust scale factor */
-  z-index: 10;
-  width: 60%; /* Adjust to your preference */
-  max-width: 600px; /* Ensure it doesn't get too wide */
-  max-height: 60vw; /* Adjust for square shape and size */
-}
-
-.tile.active .tile-inner {
-  width: 100%;
-  height: 100%;
 }
