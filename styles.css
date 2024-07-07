@@ -17,10 +17,6 @@ body {
   font-family: 'Georgia', serif; /* Example of a romantic and readable font */
 }
 
-.p {
-  text-align: center;
-)
-
 .gallery {
   display: flex;
   flex-wrap: wrap;
