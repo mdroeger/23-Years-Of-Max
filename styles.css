@@ -84,7 +84,7 @@ body {
 /* Add this comment where you can adjust the font size for each tile individually */
 /* Example: .tile-1-back p { font-size: 16px; } */
 .tile-21-back p {
-  font-size: 12px;
+  font-size: 10px;
 }
 
 .tile-2-back p {
