@@ -16,6 +16,7 @@ body {
   color: #fff;
   border-bottom: 2px solid yellow;
   font-family: 'Georgia', serif; /* Example of a romantic and readable font */
+  font-size: 2vw;
 }
 
 .gallery {
