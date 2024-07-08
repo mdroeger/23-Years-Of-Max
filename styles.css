@@ -5,6 +5,7 @@
 body {
   margin: 0;
   font-family: serif;
+  font-size: 1vw;
   background-image: linear-gradient(#0a334e,#0a334e,#8b4e6f,#ab5152,#c25a41,#e3793d,#fa9b3d,#ffcc00);
 }
 
