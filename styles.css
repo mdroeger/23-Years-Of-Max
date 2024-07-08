@@ -5,7 +5,7 @@
 body {
   margin: 0;
   font-family: serif;
-  background-image: radial-gradient(at 5% bottom,#fa9b3d,#e3793d,#c25a41,#ab5152,#8b4e6f,#8b4e6f,#0a334e);
+  background-image: radial-gradient(at 5% top,#fa9b3d,#e3793d,#c25a41,#ab5152,#8b4e6f,#8b4e6f,#0a334e);
 }
 
 .header {
