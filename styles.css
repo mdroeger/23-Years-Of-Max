@@ -5,7 +5,7 @@
 body {
   margin: 0;
   font-family: serif;
-  background-image: radial-gradient(at 60% bottom, yellow,red);
+  background-image: radial-gradient(at 60% bottom,#ff7017,#ffae17,#003d87);
 }
 
 .header {
